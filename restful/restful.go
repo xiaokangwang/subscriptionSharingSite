@@ -9,6 +9,8 @@ type Server struct {
 	SiteSecret string
 
 	kv keyValueStorage.ScopedPersistentStorage
+
+	prefix string
 }
 
 func NewServer(kv keyValueStorage.ScopedPersistentStorage, SiteSecret string) *Server {
@@ -19,6 +21,8 @@ func NewServer(kv keyValueStorage.ScopedPersistentStorage, SiteSecret string) *S
 }
 
 func (s *Server) RegisterHandlers(engine *gin.Engine, apiPrefix string) {
+	s.prefix = apiPrefix
+
 	api := engine.Group(apiPrefix)
 	{
 		api.GET("/token", s.GenerateToken)
