@@ -1,6 +1,9 @@
 package model
 
-import "github.com/xiaokangwang/subscriptionSharingSite/keyValueStorage"
+import (
+	"context"
+	"github.com/xiaokangwang/subscriptionSharingSite/keyValueStorage"
+)
 
 type ProxyServer struct {
 	Group       string
@@ -14,10 +17,10 @@ func (s *ProxyServer) GetDatabaseKey() string {
 
 func (s *ProxyServer) GetContentFromKV(
 	storage keyValueStorage.ScopedPersistentStorage) ([]byte, error) {
-	return storage.Get(nil, s.GetDatabaseKey())
+	return storage.Get(context.TODO(), s.GetDatabaseKey())
 }
 
 func (s *ProxyServer) PutContentToKV(
 	storage keyValueStorage.ScopedPersistentStorage, content []byte) error {
-	return storage.Put(nil, s.GetDatabaseKey(), content)
+	return storage.Put(context.TODO(), s.GetDatabaseKey(), content)
 }

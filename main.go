@@ -21,6 +21,7 @@ func main() {
 
 	serverSecret := mustGetEnv("SERVER_SECRET")
 	apiPrefix := mustGetEnv("API_PREFIX")
+	host := mustGetEnv("HOST")
 	port := mustGetEnv("PORT")
 
 	r := gin.Default()
@@ -29,6 +30,6 @@ func main() {
 
 	server.RegisterHandlers(r, apiPrefix)
 
-	r.Run(":" + port)
+	r.Run(host + ":" + port)
 
 }
