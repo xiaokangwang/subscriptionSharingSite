@@ -20,7 +20,7 @@ func (w *wrapper) WrapSubscriptionContainerDocument(config *containers.Container
 	var sb strings.Builder
 	for _, v := range config.ServerSpecs {
 		trimedContent :=
-			strings.ReplaceAll(strings.Trim(string(v.Content), " \n\t"), "\n", " ")
+			strings.Trim(strings.ReplaceAll(string(v.Content), "\n", " "), " \n\t")
 		sb.WriteString(trimedContent)
 		sb.WriteString("\n")
 	}
