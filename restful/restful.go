@@ -22,7 +22,7 @@ func (s *Server) RegisterHandlers(engine *gin.Engine, apiPrefix string) {
 	api := engine.Group(apiPrefix)
 	{
 		api.POST("/token", s.GenerateToken)
-		api.PUT("/proxy/:group/:privateToken/:entryName", s.PutProxyConfiguration)
+		api.POST("/proxy/:group/:privateToken/:entryName", s.PutProxyConfiguration)
 		api.GET("/proxy/:group/:publicToken/:entryName", s.GetProxyConfiguration)
 		api.GET("/GetProxyConfigurationByGroup/:group", s.GetProxyConfigurationByGroup)
 	}
