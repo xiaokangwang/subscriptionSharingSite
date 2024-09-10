@@ -21,7 +21,7 @@ func NewServer(kv keyValueStorage.ScopedPersistentStorage, SiteSecret string) *S
 func (s *Server) RegisterHandlers(engine *gin.Engine, apiPrefix string) {
 	api := engine.Group(apiPrefix)
 	{
-		api.POST("/token", s.GenerateToken)
+		api.GET("/token", s.GenerateToken)
 		api.POST("/proxy/:group/:privateToken/:entryName", s.PutProxyConfiguration)
 		api.GET("/proxy/:group/:publicToken/:entryName", s.GetProxyConfiguration)
 		api.GET("/GetProxyConfigurationByGroup/:group", s.GetProxyConfigurationByGroup)
