@@ -19,7 +19,7 @@ type wrapper struct {
 func (w *wrapper) WrapSubscriptionContainerDocument(config *containers.Container) ([]byte, error) {
 	var sb strings.Builder
 	for _, v := range config.ServerSpecs {
-		sb.WriteString(string(v.Content))
+		sb.WriteString(strings.Trim(string(v.Content), " \n\t"))
 		sb.WriteString("\n")
 	}
 	var base64edContent bytes.Buffer
