@@ -21,7 +21,7 @@ func (s *Server) GenerateToken(c *gin.Context) {
 	secretToken := SecureGenerateRandomString()
 	publicToken := common.GetPublicTokenFromSecretToken(secretToken, s.SiteSecret)
 
-	host := c.Request.Header.Get("Host")
+	host := c.Request.Host
 	shareURL := fmt.Sprintf("https://%s/%s/proxy/%s/%s/%s", host, s.prefix, "Sharing", secretToken, "SharedProxy")
 	receiveURL := fmt.Sprintf("https://%s/%s/proxy/%s/%s/%s", host, s.prefix, "Sharing", publicToken, "SharedProxy")
 
